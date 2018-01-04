@@ -1,0 +1,130 @@
+ html
+ {
+  background: url(https://static.pexels.com/photos/2324/skyline-buildings-new-york-skyscrapers.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+body
+{
+font-family: Optima;
+background-image: "backgnd.jpg";
+
+}
+h1
+{
+	font-weight:normal;
+}
+#box
+{
+	width: 510px; 
+	height: 680px;
+	margin: 0 auto; 
+}
+#logo img
+{
+	width:50px;
+	height: 60px ;
+}
+
+.calc {
+	-moz-box-shadow:inset 0px 1px 0px 0px #54a3f7;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #54a3f7;
+	box-shadow:inset 0px 1px 0px 0px #54a3f7;
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #007dc1), color-stop(1, #0061a7));
+	background:-moz-linear-gradient(top, #007dc1 5%, #0061a7 100%);
+	background:-webkit-linear-gradient(top, #007dc1 5%, #0061a7 100%);
+	background:-o-linear-gradient(top, #007dc1 5%, #0061a7 100%);
+	background:-ms-linear-gradient(top, #007dc1 5%, #0061a7 100%);
+	background:linear-gradient(to bottom, #007dc1 5%, #0061a7 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#007dc1', endColorstr='#0061a7',GradientType=0);
+	background-color:#007dc1;
+	-moz-border-radius:3px;
+	-webkit-border-radius:3px;
+	border-radius:3px;
+	border:1px solid #124d77;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:19px;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #154682;
+	width: 410px;
+    height:42px;
+
+}
+.calc:hover {
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #0061a7), color-stop(1, #007dc1));
+	background:-moz-linear-gradient(top, #0061a7 5%, #007dc1 100%);
+	background:-webkit-linear-gradient(top, #0061a7 5%, #007dc1 100%);
+	background:-o-linear-gradient(top, #0061a7 5%, #007dc1 100%);
+	background:-ms-linear-gradient(top, #0061a7 5%, #007dc1 100%);
+	background:linear-gradient(to bottom, #0061a7 5%, #007dc1 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#0061a7', endColorstr='#007dc1',GradientType=0);
+	background-color:#0061a7;
+}
+.calc:active {
+	position:relative;
+	top:1px;
+}
+
+#outer
+{
+	border-radius: 10px;
+	width: 470px; 
+	height: 580px;
+	margin: 0 auto; 
+	border-style: none;
+	color: #000;
+	background-color: white;
+}
+label
+{
+	    font-size:18px;
+	    padding-left: 24px;
+	    font-weight:lighter;
+	    color:#213f70;
+}
+input
+{
+	    font-size:15px;
+
+}
+#result
+{
+		font-size:22px;
+		padding-left: 27px;
+		color:#19aa1c;
+}
+.inp1{
+    width: 410px;
+    height:30px;
+
+}
+.inp2{
+    width: 200px;
+    height:30px;
+}
+.inp3{
+    width: 200px;
+    height:40px;
+}
+.inp4{
+    width: 200px;
+    height:30px;
+}
+#estpay
+{
+	font-size:18px;
+	padding-left: 22px;
+	color:#213f70;
+}
+.aliner
+{
+	font-size:14px;
+	padding-left: 22px;
+	color:#bf260b;
+}

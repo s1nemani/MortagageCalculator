@@ -1,0 +1,321 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="mystyle.css">
+</head>
+<body>
+<div id="box">
+<div id="logo"><a href="https://magillaloans.com"><center><img src="magillaLogo.png"/></center></a></div>
+
+<h2><center>Mortgage Calculator</center></h2>
+<div id="outer">
+
+<form id="form1">
+  <br>
+  <label for="homeprice">Home Price ($)</label>
+  <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;<input type="text" min="0" id="homeprice"  onKeyUp="hmdwperc()" 
+  class="inp1">
+  <p id="homeerror" class="aliner"><br></p>
+    <label for="downpayment">Down Payment ($)  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(%)</label> 
+  <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;<input type="text" min="0" id="downpayment"  onKeyUp="calPercent()" class="inp2" >
+
+  <input type="text" id="downpercent" min="0"  onKeyUp="perctoAmt()" 
+  class="inp2" >
+    <p id="dpayerror" class="aliner"><br></p>
+
+    <label for="mortgageterm">Mortgage term (years)	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(months)</label>
+  <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;<input type="number" min="0" onKeyUp="mortmon()" 
+   id="mortgageterm" class="inp4" >
+  <input type="number" id="mortgagemon"   min="0"  onKeyUp="mortyrs()" 
+ class="inp2"><br>
+    <p id="mterm" class="aliner"><br></p>
+
+    <label for="annualrate">Annual interest rate (%)</label>
+  <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;<input type="number" id="annualrate" min="0"  class="inp2" onKeyUp="checkrate()" >
+    <p id="arate" class="aliner"><br></p>
+
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" class="calc" value="CALCULATE" onclick="calculator()">
+  <br>
+  <p id="estpay">Estimated Monthly Payment</p>
+  <p id="result">$0.00</p>
+
+</form>
+</div><br><br>
+<br><br>
+</div>
+</body>
+</html>
+
+<script>
+form1.setAttribute( "autocomplete", "off" );
+
+function perctoAmt()
+    {
+    	var a = document.getElementById("homeprice");
+        var s1 = Number(a.value);
+        var herror = document.getElementById("homeerror");
+
+        var perc = document.getElementById("downpercent");
+    		var s2 = Number(perc.value);
+    		var div = (s1 * s2) / 100;
+
+        	var b = document.getElementById("downpayment");
+        	        var dpayerror = document.getElementById("dpayerror");
+
+        if(isNaN(perc.value) || s2<0 || s2>100)
+        {
+			dpayerror.innerText = "Please enter valid percentage";
+        } 
+        else if((a.value==null || a.value=="") && (b.value==null || b.value==""))
+        {	
+        	homeerror.innerText = "Please enter the Home Price";
+        }
+        else if((a.value!=null || a.value!="") && (perc.value!=null || perc.value!="") && !isNaN(perc.value))
+        {	
+        	b.value = div; dpayerror.innerHTML = "<br>";
+        }
+    }
+ function calPercent()
+    {
+    	var check2 = false;
+    	var a = document.getElementById("homeprice");   		
+        var s1 = Number(a.value);
+    
+        var b = document.getElementById("downpayment");
+        var s = b.value;
+
+        var s2 = Number(b.value);
+        
+        var perc = document.getElementById("downpercent");
+        var herror = document.getElementById("homeerror");
+        var dpayerror = document.getElementById("dpayerror");
+        dpayerror.innerHTML = "<br>";
+		if(isNaN(b.value) || s2<0) 
+        {
+				dpayerror.innerHTML = "Please enter valid number";
+				check2 = true;
+				perc.value = "";
+        }
+        if(s1<s2 && s1>0)
+        {
+        	    dpayerror.innerText = "Too High Down Payment" ;check2 = true;
+        }
+        if(a.value==null ||a.value=="")
+        {
+        	perc.value = "";
+        	homeerror.innerText = "Please enter the Home Price " ;check2 = true;
+        }    
+        if(check2==false) 
+        {
+        	    dpayerror.innerHTML = "<br>";check2 = false;
+        }	
+    
+  
+        if((s1!=null || s1!="")  && (s2!=null || s2!="")  && (s1>0 && s2>0) && check2==false) 
+		{
+			var div = (s2 / s1 ) * 100;
+        	perc.value = div.toFixed(2);
+        	dpayerror.innerHTML = "<br>";
+		}    
+		else if((s1!=null || s1!="")  && (s2!=null || s2!="")  && (s1>0 && s2==0) && check2==false)
+		{
+			perc.value = "0.00";	
+		}
+        else
+        {
+        	perc.value = "0.00";
+        }
+    	
+    	
+    }
+    function hmdwperc()
+    {
+    	var check2 = false;
+		var a = document.getElementById("homeprice");	
+        var s1 = Number(a.value);
+    
+        var b = document.getElementById("downpayment");
+        var s2 = Number(b.value);
+
+        var perc = document.getElementById("downpercent");
+        var herror = document.getElementById("homeerror");
+        var dpayerror = document.getElementById("dpayerror");
+        herror.innerHTML = "<br>";
+
+        if(s1<=0 || isNaN(a.value) || s1<10000 || s>10000000) 
+       	{
+				herror.innerText = "Please enter valid number between 10,000 and 10,000,000";
+				check1 = true;
+				perc.value = "";
+        }
+        else if(s1<s2)
+        {
+        	    dpayerror.innerHTML = "Too High Down Payment";
+        	    herror.innerText = "Home Price is very low. Please enter valid number";check1 = true;
+        }
+        else
+        {
+        	    herror.innerHTML = "<br>";check1 = false;
+        }
+
+        if((s1!=null || s1!="") && (s2==null || s2==""))
+        {        	perc.value = "";
+    				check1==true;
+
+        }
+        if((s1!=null || s1!="")  && (s2!=null || s2!="") && check1==false && s1>s2)
+		{	
+			var div = (s2 / s1 ) * 100;
+        	perc.value = div.toFixed(2);
+        	dpayerror.innerHTML = "<br>";
+	    }      
+        else if(s2==null ||s2=="")
+        {
+        	perc.value = "";
+        }
+    	else
+        {
+        	perc.value = "";
+        }
+	}
+     function mortmon()
+    {
+    	var a = document.getElementById("mortgageterm");
+        var s1 = Number(a.value);
+        var div = s1 * 12 ;
+        var months = document.getElementById("mortgagemon");
+        var mterms = document.getElementById("mterm");
+       
+        if(isNaN(a.value) || s1<=0)
+        {
+        	mterms.innerHTML = "Please enter valid value";
+        }
+        else
+        {
+        	months.value = div;
+        	mterms.innerHTML = "<br>";
+        }
+    }
+    function mortyrs()
+    {
+    	var months = document.getElementById("mortgagemon");
+    	var p = months.value.toString();
+    	var a = document.getElementById("mortgageterm");
+        var mterms = document.getElementById("mterm");
+
+     	if(isNaN(months.value) || p<=0)
+        {
+        	mterms.innerHTML = "Please enter valid value";
+        }
+        else
+        {
+        var s1 = Number(months.value);
+        var div = s1 / 12 ;
+        a.value = div.toFixed(2);
+        mterms.innerHTML = "<br>";
+    	}
+    }
+    function checkrate()
+    {
+ 
+        var a= document.getElementById("annualrate");
+        var rate = Number(a.value);
+        var al= document.getElementById("arate");
+        if(isNaN(a.value) || rate<=0)
+        {
+        	al.innerText = "Please enter valid annual interest rate"
+        }
+        else
+        {
+        	al.innerHTML = "<br>"
+        }
+    }
+    function calculator()
+    {
+    	var ch1 = false,ch2 = false,ch3 = false,ch4 = false;
+		var a = document.getElementById("homeprice");
+        var total = Number(a.value);
+        
+        var b = document.getElementById("downpayment");
+        var dwnpay = Number(b.value);
+        var P = total - dwnpay;
+
+        var c = document.getElementById("mortgageterm");
+        var yrs = Number(c.value);
+    	var n = yrs * 12;
+    	
+    	var d = document.getElementById("annualrate");
+        var rate = Number(d.value);
+
+        var herror = document.getElementById("homeerror");
+        var dpayerror = document.getElementById("dpayerror");
+        var mgterm = document.getElementById("mterm");
+        var anrate = document.getElementById("arate");
+
+    	if((total==null || total=="")  && (dwnpay==null || dwnpay=="") && (yrs==null || yrs=="") && (rate==null || rate==""))
+    	{
+    		alert("Please fill all fields");
+    	}
+    	else
+    	{ 
+        	if (a.value==null || a.value=="")
+      		{
+      			herror.innerText = "Please fill the homeprice";
+      		}
+      		else
+      		{
+      			ch1 = true;
+      			herror.innerHTML = "<br>";
+      		}	 
+      		if ((b.value==null || b.value=="")) 
+      		{
+      				dpayerror.innerText = "Please fill the Down Payment "+ dwnpay+" : "+ typeof dwnpay;
+      		}
+      		else if(dwnpay==0)
+      		{
+      				ch2 = true;
+      				dpayerror.innerHTML = "<br>";
+      		}
+      		else
+      		{
+      				ch2 = true;
+      				dpayerror.innerHTML = "<br>";
+      		}
+      		if (yrs==null || yrs=="")
+      		{
+      				mgterm.innerText = "Please fill the Mortgage Term";
+      		}
+      		else
+      		{
+      				ch3 = true;
+      				mgterm.innerHTML = "<br>";
+			}
+      		if (rate==null || rate=="")
+      		{
+      			anrate.innerText = "Please fill the Annual Interest Rate";
+      		}
+      		else
+      		{
+      			ch4 = true;
+      			anrate.innerHTML = "<br>";
+      		}      		
+       }
+       
+      	if(ch1==true && ch2==true && ch3==true && ch4==true)	
+      	{
+        	if(rate>0)
+        	{
+        		var i = (rate / 100) / 12; 
+        		res = P * i * (Math.pow(i+1, n)) / (Math.pow(i+1, n) - 1);
+        		document.getElementById("result").innerHTML = "$ "+res.toFixed(2); 
+    		}
+    	}
+    	
+    }
+</script>
+
